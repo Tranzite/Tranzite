@@ -12,12 +12,14 @@ public class lektion1 {
 		
 		svar = heltal1*heltal1;
 		
+		
 		System.out.println("svar" + heltal1*heltal1); // + tecknet kallas konkatinera
-	
+//	
 		double pi = 3.14;
 		int radie = 5;
 		
 		double area = pi*radie*radie;
+		
 				
 		System.out.println("Arean är: " + area + "cm^2");	
 	
