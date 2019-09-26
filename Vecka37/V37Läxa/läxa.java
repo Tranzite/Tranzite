@@ -47,7 +47,13 @@ public class läxa  {
 		String nummer = input.nextLine();
 		
 		System.out.println("\nInformation:");
-		System.out.println("\n:Namn\t\t" + name + "\n:Ålder\t\t" + age  + "\n:Adress\t\t" + adress + "\n:Pnummer\t\t" + zip + "\n:Stad\t\t" + city + "\n:nummer\t\t" + nummer );
+		System.out.println(
+				"\n:Namn\t\t" + name 
+				+ "\n:Ålder\t\t" + age  
+				+ "\n:Adress\t\t" + adress 
+				+ "\n:Pnummer\t\t" + zip 
+				+ "\n:Stad\t\t" + city 
+				+ "\n:nummer\t\t" + nummer );
 
 
 		
