@@ -17,12 +17,12 @@ public class spanavac {
 		    m += 60;
 		    }
 		if (h < 0)
-		    h = 23;
-		{
+		    h = 23; 
+		
 
 		System.out.println(h + " " + m);
 
-		}
+		
 		    }
 		
 
