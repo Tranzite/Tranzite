@@ -1,0 +1,205 @@
+
+import java.util.Scanner;
+
+	public class uppgift {
+
+		public static String[] ord1 = { "simma".toUpperCase(), "äpple".toUpperCase(), "hej".toUpperCase(),"sol".toUpperCase(), "bil".toUpperCase() };
+
+
+		public static void main(String[] args) {
+
+			Scanner input = new Scanner(System.in);
+
+			System.out.println(välkommen(input));
+			System.out.println(meny(input));
+			
+
+		}
+
+		public static int hängagubbe(Scanner input) {
+			boolean loop = true;
+			int antalgissningar = 7; // antal gissningar
+			int spelaigen = 0;
+			int randomizer = (int) (Math.random() * ord1.length); //Bestämmer med hjälp av en random siffra vilket ord det ska bli i arrayen ord1
+			String ordet = ord1[randomizer];
+			char gissning[] = new char[ordet.length()]; // Denna håller ordet och ska göra om hela ordet till stärjnor.
+			for (int i = 0; i < gissning.length; i++) {
+				gissning[i] += '*';
+			}
+			System.out.println("Välkommen till hängagubben! Spelet fungerar så här: \n Du kommer få ett ord som är slumpat av datorn. \n Du kommer behöva gissa på var ordet är med hjälp av bokstäver \n När du tror att du vet vad ordet är så skriver du hela ordet som gissning! ");
+			System.out.println("Ordet är: " + ord1[randomizer]);
+			
+			do {
+				String spelaregissning = input.next();
+				
+				if (spelaregissning.equals(ordet)) {
+					
+					System.out.println("Du vann! \n");
+					
+					System.out.println("Vill du köra igen? \n");
+
+					System.out.println("(1) - Kör igen!");
+					System.out.println("(2) - Avsluta");
+
+					spelaigen = input.nextInt();
+					int tillbakameny = 0; 
+
+					switch (spelaigen) {
+
+					case 1:
+						tillbakameny = hängagubbe(input); // skickar tillbaka dig till menyn alltså starten av spelet.
+						break;
+					case 2:
+						System.exit(0); // stänger programmet
+						break;
+
+					default:
+
+						break;
+				}
+				}
+				
+
+				 // denna raden ska titta om man har spelaregissningt rätt eller fel bokstav och utifrån det fylla i eller ta bort en gissning från antalgissningar.
+					if( ordet.contains(spelaregissning) ) { // if satsen kollar om själva ordet innehåller bokstaven du har gissat.
+						for (int i = 0; i < gissning.length; i++) {
+							if (ordet.toCharArray()[i] == spelaregissning.toCharArray()[0]) { // denna if satsen ska kolla vilken plats bokstaven är på och sedan ska den byta ut * för bokstaven.
+								gissning[i] = spelaregissning.toCharArray()[0]; 
+								
+							
+							}
+						}
+					} 
+					
+					else {
+						antalgissningar--; //sänker gissningar
+						System.out.println("Bokstaven fanns inte i ordet");
+						System.out.println("Du har: " + antalgissningar + " gissningar kvar!" + "\n");
+					}
+
+					
+
+					
+					
+
+					System.out.println(gissning);
+				
+				
+				
+				 /*for (int i = 0; i < gissning.length; i++) {
+					if (gissning[i] != '*') {
+						System.out.println("Du vann!");
+						System.out.println("Vill du köra igen?");
+						System.out.println();
+						System.out.println("(1) - Kör igen!");
+						System.out.println("(2) - Avsluta");
+
+						spelaigen = input.nextInt();
+						int tillbakameny = 0; 
+
+						switch (spelaigen) {
+
+						case 1:
+							tillbakameny = meny(input); // skickar tillbaka dig till menyn alltså starten av spelet.
+							break;
+						case 2:
+							System.exit(0); // stänger programmet
+							break;
+
+						default:
+
+							break;
+					}
+				} 
+					
+				} */
+				
+
+					if (antalgissningar <= 0) { //ifall du får slut på gissningar alltså 0 så ska denna satsen köras
+					System.out.println();
+					System.out.println("Du fick slut på försök");
+					System.out.println();
+					System.out.println("Vill du köra igen?");
+					System.out.println();
+					System.out.println("(1) - Kör igen!");
+					System.out.println("(2) - Avsluta");
+
+					spelaigen = input.nextInt();
+					int tillbakameny = 0; 
+
+					switch (spelaigen) {
+
+					case 1:
+						tillbakameny = hängagubbe(input); // skickar tillbaka dig till spelet.
+						break;
+					case 2:
+						System.exit(0); // stänger programmet
+						break;
+
+					default:
+
+						break;
+					}
+				}
+				 
+			} while (loop == true);
+			
+			return antalgissningar;
+		}
+
+		public static int välkommen(Scanner input) { // denna metoden skapar ett välkommen medelande och skickar dig till
+														// nästa segment
+			System.out.println("Välkommen! Klicka på ett valfritt nummer för att gå vidare!!");
+			int val = input.nextInt();
+			System.out.println("Klicka på 1 om du vill start spelet eller två om du vill avsluta!");
+
+			return val;
+		}
+
+		public static int meny(Scanner input) { // Denna metoden ska funka som menyn och du ska kunna välja vilken
+												// svårhetsgrad
+
+
+
+			boolean loop = true;
+			do {
+
+				
+				System.out.println("(1) - Starta");
+				System.out.println("(2) - Avsluta");
+
+				System.out.println();
+
+				int choice = input.nextInt();
+
+				String svårhetsgrad;
+
+				switch (choice) {
+				case 1:
+					svårhetsgrad = "Lätt";
+					
+					hängagubbe	(input);
+
+					// startar spelet med hjälp av metoden.
+					break;
+
+				case 2:
+					System.out.println("Hejdå!");
+					System.exit(0); // stänger ner spelet.
+
+				default:
+					System.out.println("Du kan bara välja mellan 1-3");
+					loop = false; // breakar loopen då loop = false
+
+				}
+
+			} while (loop == true);
+
+			return 0;
+
+		}
+
+
+	}
+
+
